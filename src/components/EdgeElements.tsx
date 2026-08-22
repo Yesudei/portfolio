@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function EdgeElements() {
-  const railRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const [scrollPct, setScrollPct] = useState(0);
 
@@ -26,10 +25,10 @@ export default function EdgeElements() {
 
       {/* Scroll rail — right edge */}
       <div className="fixed right-6 top-16 bottom-16 z-50 hidden md:block">
-        <div className="relative h-full w-px bg-[rgba(245,240,235,0.08)]">
+        <div className="relative h-full w-px bg-[rgba(245,240,235,0.15)]">
           <div
             ref={dotRef}
-            className="absolute left-1/2 -translate-x-1/2 w-[9px] h-[9px] rounded-full bg-[var(--accent)] transition-[top] duration-100"
+            className="absolute left-1/2 -translate-x-1/2 w-[9px] h-[9px] rounded-full bg-[var(--accent)]"
             style={{ top: `${scrollPct * 100}%` }}
           />
         </div>
