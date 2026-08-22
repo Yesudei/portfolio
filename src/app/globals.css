@@ -151,3 +151,137 @@ body {
   background: rgba(245, 240, 235, 0.04);
   pointer-events: none;
 }
+
+/* Spotlight dot-grid + grain */
+.spotlight-overlay {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  isolation: isolate;
+}
+
+.spotlight-overlay__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.spotlight-overlay__grid--dim {
+  background-image: radial-gradient(circle, #2c2c26 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: 0.35;
+}
+
+.spotlight-overlay__grid--bright {
+  background-image: radial-gradient(circle, var(--accent) 1.4px, transparent 1.4px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(circle 160px at 50% 50%, black 0%, transparent 75%);
+  mask-image: radial-gradient(circle 160px at 50% 50%, black 0%, transparent 75%);
+  will-change: mask-position, -webkit-mask-image;
+}
+
+.spotlight-overlay__grain {
+  position: absolute;
+  inset: -20px;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: spotlight-grain 0.4s steps(4) infinite;
+}
+
+@keyframes spotlight-grain {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-2%, 1%); }
+  50%  { transform: translate(1%, -2%); }
+  75%  { transform: translate(-1%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-overlay__grain { animation: none; }
+  .spotlight-overlay__grid--bright { display: none; }
+}
+
+/* Contact modal */
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: contact-modal-fade-in 0.3s ease;
+}
+
+.contact-modal__panel {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  background: #141414;
+  border: 1px solid rgba(245, 240, 235, 0.1);
+  padding: 48px 40px;
+  animation: contact-modal-slide-up 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.contact-modal__close:hover {
+  color: var(--accent);
+}
+
+.contact-modal__link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(245, 240, 235, 0.06);
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+
+.contact-modal__link:last-child {
+  border-bottom: none;
+}
+
+.contact-modal__link:hover {
+  color: var(--accent);
+}
+
+.contact-modal__link svg {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.contact-modal__link:hover svg {
+  color: var(--accent);
+}
+
+@keyframes contact-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes contact-modal-slide-up {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

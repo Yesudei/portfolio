@@ -79,7 +79,7 @@ export default function Experience() {
     >
       <div className="section-counter hidden md:block">03</div>
       <div className="section-label hidden md:block">EXPERIENCE</div>
-      <div className="w-full max-w-5xl mx-auto pl-14 pr-10 md:pl-16 md:pr-12">
+      <div className="w-full max-w-5xl mx-auto pl-20 pr-10 md:pl-28 md:pr-12">
         <div className="exp-header opacity-0 mb-12">
           <span className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase">
             Experience

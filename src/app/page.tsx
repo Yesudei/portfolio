@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Cursor from "@/components/Cursor";
+import Spotlight from "@/components/Spotlight";
 import EdgeElements from "@/components/EdgeElements";
 import Intro from "@/components/Intro";
 import Hero from "@/components/Hero";
@@ -19,6 +20,7 @@ export default function Home() {
       <Cursor />
       {!introComplete && <Intro onComplete={() => setIntroComplete(true)} />}
       <main className={introComplete ? "" : "invisible"}>
+        {introComplete && <Spotlight />}
         {introComplete && <EdgeElements />}
         <Hero />
         <Identity />

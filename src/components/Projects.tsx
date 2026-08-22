@@ -124,8 +124,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <div
       ref={cardRef}
-      className="section h-screen flex items-center pl-14 pr-10 md:pl-20 md:pr-16 lg:pl-28 lg:pr-28"
-      data-cursor="project"
+      className="section h-screen flex items-center pl-20 pr-10 md:pl-32 md:pr-16 lg:pl-40 lg:pr-28"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -192,7 +191,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
         <div className={`relative aspect-[4/3] overflow-hidden ${index % 2 === 1 ? "md:order-1" : ""}`}>
           {project.url || project.github ? (
-            <a href={project.url ?? project.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title}`} className="project-image-wrap block h-full w-full border border-[rgba(245,240,235,0.08)] focus-visible:outline-offset-[-4px]" data-cursor="hover">
+            <a href={project.url ?? project.github} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title}`} className="project-image-wrap block h-full w-full border border-[rgba(245,240,235,0.08)] focus-visible:outline-offset-[-4px]" data-cursor="project">
               <div className="project-img h-full w-full transition-transform duration-700 ease-out"><ProjectPreview project={project} /></div>
             </a>
           ) : (

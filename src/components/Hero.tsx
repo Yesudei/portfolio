@@ -36,7 +36,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="section relative h-screen flex flex-col justify-center items-center overflow-hidden">
+    <section className="section relative h-screen flex flex-col justify-center items-center overflow-hidden px-14 md:px-20 lg:px-28">
       <div className="section-counter hidden md:block">01</div>
       <div className="section-label hidden md:block">HERO</div>
       <div className="flex flex-col justify-center items-center w-full">

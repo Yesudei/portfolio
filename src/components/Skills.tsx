@@ -74,7 +74,7 @@ export default function Skills() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section h-screen flex flex-col justify-center pl-14 pr-10 md:pl-20 md:pr-16 lg:pl-28 lg:pr-28 py-16">
+    <section ref={sectionRef} className="section h-screen flex flex-col justify-center pl-20 pr-10 md:pl-32 md:pr-16 lg:pl-40 lg:pr-28 py-16">
       <div className="section-counter hidden md:block">04</div>
       <div className="section-label hidden md:block">SKILLS</div>
       <div className="max-w-5xl mx-auto w-full">

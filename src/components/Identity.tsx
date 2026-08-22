@@ -52,6 +52,22 @@ export default function Identity() {
           },
         }
       );
+
+      gsap.fromTo(
+        ".identity-about",
+        { opacity: 0, y: 15 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 45%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     }, section);
 
     return () => ctx.revert();
@@ -67,7 +83,7 @@ export default function Identity() {
   return (
     <section
       ref={sectionRef}
-      className="section h-screen flex items-center justify-start pl-14 pr-10 md:pl-20 md:pr-16 lg:pl-28 lg:pr-28"
+      className="section h-screen flex items-center justify-start pl-20 pr-10 md:pl-32 md:pr-16 lg:pl-40 lg:pr-28"
     >
       <div className="max-w-3xl">
         <div className="space-y-1 mb-10 identity-main opacity-0">
@@ -76,21 +92,40 @@ export default function Identity() {
             style={{ fontFamily: "var(--font-display)" }}
             data-cursor="text"
           >
-            I BUILD
+            21 YEARS OLD
           </div>
           <div
             className="text-[10vw] md:text-[7vw] lg:text-[6vw] font-bold leading-[1.05] tracking-tight uppercase"
             style={{ fontFamily: "var(--font-display)" }}
             data-cursor="text"
           >
-            DIGITAL
+            COMPUTER SCIENCE
           </div>
           <div
             className="text-[10vw] md:text-[7vw] lg:text-[6vw] font-bold leading-[1.05] tracking-tight uppercase mb-4"
             style={{ fontFamily: "var(--font-display)" }}
             data-cursor="text"
           >
-            EXPERIENCES.
+            
+          </div>
+        </div>
+
+        <div className="identity-about opacity-0 mb-10 grid grid-cols-2 gap-x-10 gap-y-3 font-mono text-xs tracking-wider">
+          <div className="flex gap-2">
+            <span className="text-[var(--muted)] uppercase w-20 shrink-0">Based</span>
+            <span className="text-[var(--text)]">Ulaanbaatar, MN</span>
+          </div>
+          <div className="flex gap-2">
+            <span className="text-[var(--muted)] uppercase w-20 shrink-0">Hobby</span>
+            <span className="text-[var(--text)]">Music, Drawing, Gaming, Editing</span>
+          </div>
+          <div className="flex gap-2">
+            <span className="text-[var(--muted)] uppercase w-20 shrink-0">Focus</span>
+            <span className="text-[var(--text)]">Developer</span>
+          </div>
+          <div className="flex gap-2">
+            <span className="text-[var(--muted)] uppercase w-20 shrink-0">Family</span>
+            <span className="text-[var(--text)]">Father, Mother, Brother</span>
           </div>
         </div>
 
