@@ -76,7 +76,7 @@ export default function Experience() {
     <section
       ref={sectionRef}
       aria-label="Experience"
-      className="section h-screen flex items-center justify-center"
+      className="section min-h-[100dvh] md:h-screen md:min-h-0 flex items-center justify-center py-16 md:py-0"
     >
       <div className="section-counter hidden md:block" aria-hidden="true">03</div>
       <div className="section-label hidden md:block" aria-hidden="true">EXPERIENCE</div>

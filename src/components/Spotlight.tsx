@@ -16,6 +16,8 @@ export default function Spotlight() {
     ).matches;
     if (reduceMotion) return;
 
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768;
+
     const target = { x: 0, y: 0 };
     const current = { x: 0, y: 0 };
     let hasPointer = false;
@@ -37,7 +39,20 @@ export default function Spotlight() {
         rafId = requestAnimationFrame(loop);
         return;
       }
-      if (hasPointer) {
+      if (isCoarse) {
+        // autonomous drift on mobile/coarse pointer — no cursor, so keep grid alive
+        const t = Date.now();
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        // slow figure-8 across viewport
+        target.x = w * (0.5 + 0.28 * Math.sin(t * 0.00035));
+        target.y = h * (0.5 + 0.25 * Math.cos(t * 0.00028));
+        current.x += (target.x - current.x) * 0.015;
+        current.y += (target.y - current.y) * 0.015;
+        const mask = `radial-gradient(circle 160px at ${current.x}px ${current.y}px, black 0%, transparent 75%)`;
+        bright.style.maskImage = mask;
+        bright.style.webkitMaskImage = mask;
+      } else if (hasPointer) {
         current.x += (target.x - current.x) * ease;
         current.y += (target.y - current.y) * ease;
         const mask = `radial-gradient(circle 160px at ${current.x}px ${current.y}px, black 0%, transparent 75%)`;

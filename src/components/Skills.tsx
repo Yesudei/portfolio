@@ -85,11 +85,11 @@ export default function Skills() {
           <div className="w-full h-px bg-[rgba(245,240,235,0.1)]" aria-hidden="true" />
         </div>
 
-        <div ref={wordsRef} className="grid grid-cols-3 gap-4 md:gap-6 justify-items-center">
+        <div ref={wordsRef} className="grid grid-cols-3 gap-4 md:gap-6 justify-items-stretch">
           {skills.map((skill) => (
             <div
               key={skill.name}
-              className="skill-word-item flex flex-col items-center py-4 px-3 md:py-5 md:px-4 lg:py-6 lg:px-6 transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="skill-word-item w-full min-h-[72px] md:min-h-[80px] lg:min-h-[88px] flex flex-col items-center justify-center px-2 py-3 text-center transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]"
               style={{
                 fontFamily: "var(--font-mono)",
                 color: skill.accent ? "var(--accent)" : "var(--text)",
@@ -97,7 +97,7 @@ export default function Skills() {
                 borderRadius: "4px",
               }}
             >
-              <span className="text-xs md:text-sm uppercase tracking-[0.1em] mb-1">{skill.name}</span>
+              <span className="text-xs md:text-sm uppercase tracking-[0.1em] leading-tight break-words">{skill.name}</span>
             </div>
           ))}
         </div>
