@@ -10,7 +10,9 @@ import Identity from "@/components/Identity";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
+import Youtube from "@/components/Youtube";
 import Contact from "@/components/Contact";
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);
@@ -30,6 +32,7 @@ export default function Home() {
         <Projects />
         <Experience />
         <Skills />
+        <Youtube />
         <Contact />
       </main>
     </>

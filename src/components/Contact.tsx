@@ -120,7 +120,7 @@ export default function Contact() {
         ref={sectionRef}
         className="section min-h-screen flex flex-col justify-center items-center px-6 py-32 text-center"
       >
-        <div className="section-counter hidden md:block">05</div>
+        <div className="section-counter hidden md:block">06</div>
         <div className="section-label hidden md:block">CONTACT</div>
         <h2 className="space-y-4 mb-16" aria-label="Let's build something">
           <span
