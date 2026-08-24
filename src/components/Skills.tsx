@@ -77,7 +77,7 @@ export default function Skills() {
     <section ref={sectionRef} className="section h-screen flex flex-col justify-center pl-20 pr-10 md:pl-32 md:pr-16 lg:pl-40 lg:pr-28 py-16">
       <div className="section-counter hidden md:block">04</div>
       <div className="section-label hidden md:block">SKILLS</div>
-      <div className="max-w-5xl mx-auto w-full">
+      <div className="max-w-5xl mx-auto">
         <div className="skills-header opacity-0 mb-16">
           <span className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase block mb-4">
             Capabilities
@@ -85,19 +85,20 @@ export default function Skills() {
           <div className="w-full h-px bg-[rgba(245,240,235,0.1)]" />
         </div>
 
-        <div ref={wordsRef} className="flex flex-wrap gap-3 md:gap-4 mb-20">
+        <div ref={wordsRef} className="grid grid-cols-3 gap-4 md:gap-6 justify-items-center">
           {skills.map((skill) => (
-            <span
+            <div
               key={skill.name}
-              className="skill-word-item inline-flex items-center px-5 py-3 md:px-6 md:py-3.5 border border-[rgba(245,240,235,0.15)] font-mono text-xs md:text-sm tracking-[0.12em] uppercase opacity-0 transition-colors duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="skill-word-item flex flex-col items-center py-4 px-3 md:py-5 md:px-4 lg:py-6 lg:px-6 transition-all duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]"
               style={{
                 fontFamily: "var(--font-mono)",
                 color: skill.accent ? "var(--accent)" : "var(--text)",
+                border: "2px solid var(--muted)",
+                borderRadius: "4px",
               }}
-              data-cursor="text"
             >
-              {skill.name}
-            </span>
+              <span className="text-xs md:text-sm uppercase tracking-[0.1em] mb-1">{skill.name}</span>
+            </div>
           ))}
         </div>
 

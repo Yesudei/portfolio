@@ -53,7 +53,7 @@ export default function Identity() {
   return (
     <section
       ref={sectionRef}
-      className="section h-screen flex items-center justify-start pl-20 pr-10 md:pl-32 md:pr-16 lg:pl-40 lg:pr-28"
+      className="section h-screen flex items-center justify-center pl-10 pr-10 md:pl-20 md:pr-16 lg:pl-24 lg:pr-20"
     >
       <div className="max-w-3xl">
         <div className="identity-main opacity-0">
