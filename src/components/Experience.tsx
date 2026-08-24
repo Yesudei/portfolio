@@ -23,7 +23,7 @@ const experiences = [
     period: "2024",
     role: "HOUSEKEEPER",
     company: "HOLIDAY INN — LANDRY'S INC.",
-    description: "Work & Travel program. Houston / Galveston Island, Texas. Three months of hands-on hospitality work — adapting fast in a new country.",
+    description: "Work & Travel program. Houston / Galveston Island, Texas. Three months of hardwork in a Holiday Inn 4 star hotel.",
   },
 ];
 
@@ -75,15 +75,16 @@ export default function Experience() {
   return (
     <section
       ref={sectionRef}
+      aria-label="Experience"
       className="section h-screen flex items-center justify-center"
     >
-      <div className="section-counter hidden md:block">03</div>
-      <div className="section-label hidden md:block">EXPERIENCE</div>
-      <div className="w-full max-w-5xl mx-auto pl-20 pr-10 md:pl-28 md:pr-12">
+      <div className="section-counter hidden md:block" aria-hidden="true">03</div>
+      <div className="section-label hidden md:block" aria-hidden="true">EXPERIENCE</div>
+      <div className="w-full max-w-5xl mx-auto px-6 md:px-8">
         <div className="exp-header opacity-0 mb-12">
-          <span className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase">
+          <h2 className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase">
             Experience
-          </span>
+          </h2>
         </div>
 
         <div className="exp-list space-y-0">

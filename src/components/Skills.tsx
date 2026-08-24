@@ -74,15 +74,15 @@ export default function Skills() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section h-screen flex flex-col justify-center pl-20 pr-10 md:pl-32 md:pr-16 lg:pl-40 lg:pr-28 py-16">
-      <div className="section-counter hidden md:block">04</div>
-      <div className="section-label hidden md:block">SKILLS</div>
-      <div className="max-w-5xl mx-auto">
+    <section ref={sectionRef} aria-label="Skills" className="section h-screen flex flex-col justify-center px-6 md:px-10 lg:px-12 py-16">
+      <div className="section-counter hidden md:block" aria-hidden="true">04</div>
+      <div className="section-label hidden md:block" aria-hidden="true">SKILLS</div>
+      <div className="w-full max-w-5xl mx-auto">
         <div className="skills-header opacity-0 mb-16">
-          <span className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase block mb-4">
+          <h2 className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase block mb-4">
             Capabilities
-          </span>
-          <div className="w-full h-px bg-[rgba(245,240,235,0.1)]" />
+          </h2>
+          <div className="w-full h-px bg-[rgba(245,240,235,0.1)]" aria-hidden="true" />
         </div>
 
         <div ref={wordsRef} className="grid grid-cols-3 gap-4 md:gap-6 justify-items-center">
@@ -103,9 +103,9 @@ export default function Skills() {
         </div>
 
         <div className="flex flex-wrap items-center gap-8 pt-8 border-t border-[rgba(245,240,235,0.1)]">
-          <span className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase">
+          <h3 className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase">
             Languages
-          </span>
+          </h3>
           {languages.map((lang) => (
             <div key={lang.name} className="flex items-center gap-2">
               <span className="text-sm font-medium">{lang.name}</span>

@@ -45,6 +45,9 @@ const contactLinks = [
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -75,6 +78,36 @@ export default function Contact() {
   useEffect(() => {
     if (open) {
       document.body.classList.add("no-scroll");
+      const prev = document.activeElement as HTMLElement | null;
+      // focus close button after mount
+      setTimeout(() => closeBtnRef.current?.focus(), 50);
+      const onKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setOpen(false);
+          (triggerRef.current ?? prev)?.focus();
+        }
+        if (e.key === "Tab" && panelRef.current) {
+          const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusable.length === 0) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      };
+      document.addEventListener("keydown", onKeyDown);
+      return () => {
+        document.removeEventListener("keydown", onKeyDown);
+        document.body.classList.remove("no-scroll");
+        if (prev) prev.focus();
+      };
     } else {
       document.body.classList.remove("no-scroll");
     }
@@ -89,33 +122,37 @@ export default function Contact() {
       >
         <div className="section-counter hidden md:block">05</div>
         <div className="section-label hidden md:block">CONTACT</div>
-        <div className="space-y-4 mb-16">
-          <div
-            className="contact-line text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold tracking-tighter uppercase leading-[0.85] opacity-0"
+        <h2 className="space-y-4 mb-16" aria-label="Let's build something">
+          <span
+            className="contact-line block text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold tracking-tighter uppercase leading-[0.85] opacity-0"
             style={{ fontFamily: "var(--font-display)" }}
             data-cursor="text"
           >
             LET&apos;S
-          </div>
-          <div
-            className="contact-line text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold tracking-tighter uppercase leading-[0.85] opacity-0"
+          </span>
+          <span
+            className="contact-line block text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold tracking-tighter uppercase leading-[0.85] opacity-0"
             style={{ fontFamily: "var(--font-display)" }}
             data-cursor="text"
           >
             BUILD
-          </div>
-          <div
-            className="contact-line text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold tracking-tighter uppercase leading-[0.85] text-[var(--accent)] opacity-0"
+          </span>
+          <span
+            className="contact-line block text-[10vw] md:text-[8vw] lg:text-[7vw] font-bold tracking-tighter uppercase leading-[0.85] text-[var(--accent)] opacity-0"
             style={{ fontFamily: "var(--font-display)" }}
             data-cursor="text"
           >
             SOMETHING.
-          </div>
-        </div>
+          </span>
+        </h2>
 
         <div className="space-y-8">
           <button
+            ref={triggerRef}
             onClick={() => setOpen(true)}
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            aria-controls="contact-dialog"
             className="contact-line font-mono text-sm tracking-[0.15em] uppercase text-[var(--text)] hover:text-[var(--accent)] transition-colors duration-300 opacity-0 border border-[rgba(245,240,235,0.2)] px-8 py-4 hover:border-[var(--accent)]"
             data-cursor="hover"
           >
@@ -135,26 +172,34 @@ export default function Contact() {
       </section>
 
       {open && (
-        <div className="contact-modal" onClick={() => setOpen(false)}>
+        <div className="contact-modal" onClick={() => setOpen(false)} role="presentation">
           <div
+            ref={panelRef}
+            id="contact-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-dialog-title"
             className="contact-modal__panel"
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              ref={closeBtnRef}
               onClick={() => setOpen(false)}
+              aria-label="Close contact dialog"
               className="contact-modal__close"
               data-cursor="hover"
             >
-              <X size={20} />
+              <X size={20} aria-hidden="true" />
             </button>
 
             <div className="space-y-1 mb-10">
-              <div
+              <h2
+                id="contact-dialog-title"
                 className="text-3xl md:text-4xl font-bold tracking-tight uppercase"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 GET IN TOUCH
-              </div>
+              </h2>
             </div>
 
             <div className="space-y-4">

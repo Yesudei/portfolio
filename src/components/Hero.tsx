@@ -36,34 +36,34 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="section relative h-screen flex flex-col justify-center items-center overflow-hidden px-14 md:px-20 lg:px-28">
-      <div className="section-counter hidden md:block">01</div>
-      <div className="section-label hidden md:block">HERO</div>
+    <section aria-label="Hero" className="section relative h-screen flex flex-col justify-center items-center overflow-hidden px-14 md:px-20 lg:px-28">
+      <div className="section-counter hidden md:block" aria-hidden="true">01</div>
+      <div className="section-label hidden md:block" aria-hidden="true">HERO</div>
       <div className="flex flex-col justify-center items-center w-full">
-        <div className="text-center">
-          <div
+        <h1 className="text-center">
+          <span
             ref={yesudeiRef}
-            className="text-[12vw] md:text-[10vw] lg:text-[9vw] font-bold leading-[0.85] tracking-tighter uppercase opacity-0"
+            className="block text-[12vw] md:text-[10vw] lg:text-[9vw] font-bold leading-[0.85] tracking-tighter uppercase opacity-0"
             style={{ fontFamily: "var(--font-display)" }}
             data-cursor="text"
           >
             YESUDEI
-          </div>
-          <div
+          </span>
+          <span
             ref={erdenesukhRef}
-            className="text-[12vw] md:text-[10vw] lg:text-[9vw] font-bold leading-[0.85] tracking-tighter uppercase text-[var(--muted)] opacity-0"
+            className="block text-[12vw] md:text-[10vw] lg:text-[9vw] font-bold leading-[0.85] tracking-tighter uppercase text-[var(--muted)] opacity-0"
             style={{ fontFamily: "var(--font-display)" }}
             data-cursor="text"
           >
             ERDENESUKH
-          </div>
-        </div>
-        <div
+          </span>
+        </h1>
+        <p
           ref={subtitleRef}
           className="mt-8 font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase opacity-0"
         >
           Frontend Developer — Ulaanbaatar, MN
-        </div>
+        </p>
       </div>
     </section>
   );

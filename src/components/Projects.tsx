@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -56,15 +57,32 @@ const projects: Project[] = [
 ];
 
 function ProjectPreview({ project }: { project: Project }) {
+  const [imgError, setImgError] = useState(false);
   const imageUrl = project.url
     ? "/projects/melodex-landing.png"
     : `https://opengraph.githubassets.com/portfolio/Yesudei/${project.repo}`;
   const sourceLabel = project.url ? "LIVE SITE - MELODEX" : "GITHUB REPOSITORY";
+  const alt = `${project.title} preview — ${project.category}`;
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-[#161b22]">
-      <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out" style={{ backgroundImage: `url(${imageUrl})` }} />
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent px-4 pb-4 pt-12 text-white">
+      {!imgError ? (
+        <Image
+          src={imageUrl}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover transition-transform duration-700 ease-out"
+          loading="lazy"
+          unoptimized={imageUrl.startsWith("https://opengraph")}
+          onError={() => setImgError(true)}
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a] px-6 text-center">
+          <p className="font-mono text-xs tracking-wider text-[var(--muted)]">{project.title} — preview unavailable</p>
+        </div>
+      )}
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent px-4 pb-4 pt-12 text-white pointer-events-none">
         <p className="font-mono text-[10px] tracking-[0.18em] text-[#c8ff00]">{sourceLabel}</p>
         <p className="mt-1 font-mono text-xs tracking-wide">{project.url ? "melodexmusic.vercel.app" : `Yesudei/${project.repo}`}</p>
       </div>
@@ -124,15 +142,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <div
       ref={cardRef}
-      className="section h-screen flex items-center pl-20 pr-10 md:pl-32 md:pr-16 lg:pl-40 lg:pr-28"
+      className="section h-screen flex items-center justify-center px-6 md:px-10 lg:px-12"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {index === 0 && <div className="section-counter hidden md:block">02</div>}
-      {index === 0 && <div className="section-label hidden md:block">PROJECTS</div>}
-      <div className="project-content w-full grid md:grid-cols-2 gap-8 md:gap-12 items-center opacity-0">
+      {index === 0 && <h2 className="sr-only">Projects</h2>}
+      {index === 0 && <div className="section-counter hidden md:block" aria-hidden="true">02</div>}
+      {index === 0 && <div className="section-label hidden md:block" aria-hidden="true">PROJECTS</div>}
+      <div className="project-content w-full max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center opacity-0">
         {/* Text */}
-        <div className={`space-y-6 ${index % 2 === 1 ? "md:order-2" : ""}`}>
+        <div className={`space-y-6 ${index % 2 === 1 ? "md:order-2 md:pl-6 lg:pl-10" : ""}`}>
           <div className="flex items-baseline gap-4">
             <span className="font-mono text-xs text-[var(--accent)] tracking-wider">
               {String(project.id).padStart(2, "0")}

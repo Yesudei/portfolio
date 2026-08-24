@@ -19,7 +19,10 @@ export default function Home() {
     <>
       <Cursor />
       {!introComplete && <Intro onComplete={() => setIntroComplete(true)} />}
-      <main className={introComplete ? "" : "invisible"}>
+      <noscript>
+        <style>{`main.invisible{visibility:visible !important}`}</style>
+      </noscript>
+      <main id="main-content" className={introComplete ? "" : "invisible"}>
         {introComplete && <Spotlight />}
         {introComplete && <EdgeElements />}
         <Hero />

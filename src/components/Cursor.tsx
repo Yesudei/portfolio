@@ -31,8 +31,9 @@ export default function Cursor() {
       if (!visible) setVisible(true);
 
       const nearRight = e.clientX > window.innerWidth - 140;
-      if (nearRight && state !== "hover" && state !== "project") {
-        setState("scroll");
+      // use functional update to avoid stale closure on state
+      if (nearRight) {
+        setState((prev) => (prev !== "hover" && prev !== "project" ? "scroll" : prev));
       }
     };
 
@@ -45,6 +46,10 @@ export default function Cursor() {
 
     let raf: number;
     const animate = () => {
+      if (document.hidden) {
+        raf = requestAnimationFrame(animate);
+        return;
+      }
       dotPos.current.x += (pos.current.x - dotPos.current.x) * 0.25;
       dotPos.current.y += (pos.current.y - dotPos.current.y) * 0.25;
       ringPos.current.x += (pos.current.x - ringPos.current.x) * 0.12;
@@ -67,7 +72,7 @@ export default function Cursor() {
       document.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [isMobile, visible, state]);
+  }, [isMobile, visible]);
 
   useEffect(() => {
     if (isMobile) return;
@@ -95,6 +100,7 @@ export default function Cursor() {
     <>
       <div
         ref={dotRef}
+        aria-hidden="true"
         className="fixed top-0 left-0 z-[9999] pointer-events-none"
         style={{
           width: 8,
@@ -109,6 +115,7 @@ export default function Cursor() {
       />
       <div
         ref={ringRef}
+        aria-hidden="true"
         className="fixed top-0 left-0 z-[9999] pointer-events-none"
         style={{
           width: ringSize,

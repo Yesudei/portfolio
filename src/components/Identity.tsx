@@ -53,32 +53,33 @@ export default function Identity() {
   return (
     <section
       ref={sectionRef}
-      className="section h-screen flex items-center justify-center pl-10 pr-10 md:pl-20 md:pr-16 lg:pl-24 lg:pr-20"
+      aria-label="About"
+      className="section h-screen flex items-center justify-center px-6 md:px-10 lg:px-12"
     >
-      <div className="max-w-3xl">
-        <div className="identity-main opacity-0">
-          <div className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase mb-4">
+      <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center">
+        <div className="identity-main opacity-0 w-full flex flex-col items-center">
+          <p className="font-mono text-xs tracking-[0.25em] text-[var(--muted)] uppercase mb-4 text-center">
             21 years old
-          </div>
-          <div className="space-y-1 mb-12">
-            <div
-              className="text-[10vw] md:text-[7vw] lg:text-[6vw] font-bold leading-[1.05] tracking-tight uppercase"
+          </p>
+          <h2 className="space-y-1 mb-12 w-full flex flex-col items-center">
+            <span
+              className="block text-[10vw] md:text-[7vw] lg:text-[6vw] font-bold leading-[1.05] tracking-tight uppercase text-center"
               style={{ fontFamily: "var(--font-display)" }}
               data-cursor="text"
             >
               DEVELOPER
-            </div>
-            <div
-              className="text-[10vw] md:text-[7vw] lg:text-[6vw] font-bold leading-[1.05] tracking-tight uppercase text-[var(--muted)]"
+            </span>
+            <span
+              className="block text-[10vw] md:text-[7vw] lg:text-[6vw] font-bold leading-[1.05] tracking-tight uppercase text-[var(--muted)] text-center"
               style={{ fontFamily: "var(--font-display)" }}
               data-cursor="text"
             >
               &amp; CREATIVE
-            </div>
-          </div>
+            </span>
+          </h2>
         </div>
 
-        <div className="identity-about opacity-0 grid grid-cols-2 gap-x-10 gap-y-3 font-mono text-xs tracking-wider">
+        <div className="identity-about opacity-0 grid grid-cols-2 gap-x-10 gap-y-3 font-mono text-xs tracking-wider w-full max-w-2xl mx-auto place-items-center md:place-items-start text-left">
           <div className="flex gap-2">
             <span className="text-[var(--muted)] uppercase w-20 shrink-0">Based</span>
             <span className="text-[var(--text)]">Ulaanbaatar, MN</span>

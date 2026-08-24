@@ -18,13 +18,13 @@ export default function EdgeElements() {
   return (
     <>
       {/* Status tag — top right */}
-      <div className="fixed top-6 right-6 z-50 flex items-center gap-2 font-mono text-[11px] tracking-[0.04em] text-[var(--muted)]">
+      <div aria-hidden="true" className="fixed top-6 right-6 z-50 flex items-center gap-2 font-mono text-[11px] tracking-[0.04em] text-[var(--muted)]">
         <span className="w-[6px] h-[6px] rounded-full bg-[var(--accent)]" />
         AVAILABLE FOR WORK
       </div>
 
       {/* Scroll rail — right edge */}
-      <div className="fixed right-6 top-16 bottom-16 z-50 hidden md:block">
+      <div aria-hidden="true" className="fixed right-6 top-16 bottom-16 z-50 hidden md:block">
         <div className="relative h-full w-px bg-[rgba(245,240,235,0.15)]">
           <div
             ref={dotRef}
@@ -35,7 +35,7 @@ export default function EdgeElements() {
       </div>
 
       {/* Rotated label — bottom right */}
-      <div className="fixed right-11 bottom-12 z-50 hidden md:block origin-right-right">
+      <div aria-hidden="true" className="fixed right-11 bottom-12 z-50 hidden md:block origin-right-right">
         <span
           className="font-mono text-[10px] tracking-[0.15em] text-[var(--muted)] whitespace-nowrap"
           style={{ transform: "rotate(90deg)", display: "block" }}

@@ -33,6 +33,10 @@ export default function Spotlight() {
     };
 
     const loop = () => {
+      if (document.hidden) {
+        rafId = requestAnimationFrame(loop);
+        return;
+      }
       if (hasPointer) {
         current.x += (target.x - current.x) * ease;
         current.y += (target.y - current.y) * ease;
@@ -43,19 +47,25 @@ export default function Spotlight() {
       rafId = requestAnimationFrame(loop);
     };
 
+    const handleVisibility = () => {
+      if (document.hidden) hasPointer = false;
+    };
+
     document.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("pointerleave", handlePointerLeave);
+    document.addEventListener("visibilitychange", handleVisibility);
     rafId = requestAnimationFrame(loop);
 
     return () => {
       document.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("pointerleave", handlePointerLeave);
+      document.removeEventListener("visibilitychange", handleVisibility);
       cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
-    <div ref={overlayRef} className="spotlight-overlay">
+    <div ref={overlayRef} aria-hidden="true" className="spotlight-overlay">
       <div className="spotlight-overlay__grid spotlight-overlay__grid--dim" />
       <div
         ref={brightRef}
